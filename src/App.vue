@@ -1,17 +1,31 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="wrap">
+      <HelloWorld id="zoom" msg="Welcome to Your Vue.js App"/>
+    </div>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import zoomable from 'd3-zoomable'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data () {
+    return {
+      zoom: null
+    }
+  },
+  mounted () {
+    // ref로 하면 내부 함수에서 this를 vue 객체로 잡아서 에러남
+    // https://vasturiano.github.io/d3-zoomable
+    // https://vasturiano.github.io/d3-zoomable/example/html/
+    this.zoom = zoomable()(document.querySelector('#wrap')).htmlEl(document.querySelector('#zoom'))
   }
 }
 </script>
