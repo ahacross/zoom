@@ -26,6 +26,11 @@ export default {
     // https://vasturiano.github.io/d3-zoomable
     // https://vasturiano.github.io/d3-zoomable/example/html/
     this.zoom = zoomable()(document.querySelector('#wrap')).htmlEl(document.querySelector('#zoom'))
+    setTimeout(() => {
+      console.log(innerHeight, document.querySelector('#wrap').offsetTop)
+      document.querySelector('#wrap').style.width = `${innerWidth - 4}px`
+      document.querySelector('#wrap').style.height = `${innerHeight - document.querySelector('#wrap').offsetTop + 4}px`
+    }, 1000)
   }
 }
 </script>
@@ -38,5 +43,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#wrap {
+  overflow: auto;
 }
 </style>
