@@ -47,4 +47,7 @@ export default {
 #wrap {
   overflow: auto;
 }
+#zoom {
+  transform-origin: top left;
+}
 </style>
