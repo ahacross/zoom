@@ -25,11 +25,16 @@ export default {
     // ref로 하면 내부 함수에서 this를 vue 객체로 잡아서 에러남
     // https://vasturiano.github.io/d3-zoomable
     // https://vasturiano.github.io/d3-zoomable/example/html/
-    this.zoom = zoomable()(document.querySelector('#wrap')).htmlEl(document.querySelector('#zoom'))
+    const wrap = document.querySelector('#wrap')
+    const zoom = document.querySelector('#zoom')
+    const minZoom = 0.5
+    const maxZoom = 2
+    this.zoom = zoomable()(wrap).htmlEl(zoom).scaleExtent([minZoom, maxZoom])
     setTimeout(() => {
-      console.log(innerHeight, document.querySelector('#wrap').offsetTop)
-      document.querySelector('#wrap').style.width = `${innerWidth - 4}px`
-      document.querySelector('#wrap').style.height = `${innerHeight - document.querySelector('#wrap').offsetTop + 4}px`
+      console.log(innerHeight, wrap.offsetTop)
+      const wrapStyle = wrap.style
+      wrapStyle.width = `${innerWidth - 4}px`
+      wrapStyle.height = `${innerHeight - wrap.offsetTop + 4}px`
     }, 1000)
   }
 }
